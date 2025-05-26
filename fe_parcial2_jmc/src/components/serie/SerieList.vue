@@ -41,6 +41,7 @@ defineExpose({ obtenerLista })
         <tr>
           <th>Nro.</th>
           <th>Titulo</th>
+          <th>Genero</th>
           <th>Sinopsis</th>
           <th>Director</th>
           <th>Temporadas</th>
@@ -52,6 +53,7 @@ defineExpose({ obtenerLista })
         <tr v-for="(serie, index) in series" :key="serie.id">
           <td>{{ index + 1 }}</td>
           <td>{{ serie.titulo }}</td>
+          <td>{{ serie.genero }}</td>
           <td>{{ serie.sinopsis }}</td>
           <td>{{ serie.director }}</td>
           <td>{{ serie.temporadas }}</td>

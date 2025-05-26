@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Serie } from '@/models/serie'
 import http from '@/plugins/axios'
-import { Calendar, InputNumber } from 'primevue'
+import { Calendar, DatePicker, InputNumber, Select } from 'primevue'
 import Button from 'primevue/button'
 import Dialog from 'primevue/dialog'
 import InputText from 'primevue/inputtext'
@@ -33,10 +33,19 @@ watch(
   },
 )
 
+const geneross = [
+  { name: 'Drama', value: 'Drama' },
+  { name: 'Comedia', value: 'Comedia' },
+  { name: 'Acción', value: 'Acción' },
+  { name: 'Terror', value: 'Terror' },
+  { name: 'Ciencia Ficción', value: 'Ciencia Ficción' },
+]
+
 async function handleSave() {
   try {
     const body = {
       titulo: serie.value.titulo,
+      genero: serie.value.genero,
       sinopsis: serie.value.sinopsis,
       director: serie.value.director,
       temporadas: serie.value.temporadas,
@@ -64,7 +73,7 @@ async function handleSave() {
       style="width: 25rem"
     >
       <div class="flex items-center gap-4 mb-4">
-        <label for="titulo" class="font-semibold w-24">Titulo:</label>
+        <label for="titulo" class="font-semibold w-6">Titulo:</label>
         <InputText
           id="titulo"
           v-model="serie.titulo"
@@ -74,7 +83,19 @@ async function handleSave() {
         />
       </div>
       <div class="flex items-center gap-4 mb-4">
-        <label for="sinopsis" class="font-semibold w-24">Sinopsis:</label>
+        <label for="genero" class="font-semibold w-6">Género:</label>
+        <Select
+          id="genero"
+          v-model="serie.genero"
+          :options="geneross"
+          optionLabel="name"
+          optionValue="value"
+          placeholder="Seleccionar Genero"
+          class="w-full md:w-56"
+        />
+      </div>
+      <div class="flex items-center gap-4 mb-4">
+        <label for="sinopsis" class="font-semibold w-6">Sinopsis:</label>
         <InputText
           id="sinopsis"
           v-model="serie.sinopsis"
@@ -84,7 +105,7 @@ async function handleSave() {
         />
       </div>
       <div class="flex items-center gap-4 mb-4">
-        <label for="director" class="font-semibold w-24">Director:</label>
+        <label for="director" class="font-semibold w-6">Director:</label>
         <InputText
           id="director"
           v-model="serie.director"
@@ -94,9 +115,9 @@ async function handleSave() {
         />
       </div>
       <div class="flex items-center gap-4 mb-4">
-        <label for="temporadas" class="font-semibold w-24">Temporadas:</label>
+        <label for="temporadas" class="font-semibold w-6">Temporadas:</label>
         <InputNumber
-          id="sinopsis"
+          id="temporadas"
           v-model="serie.temporadas"
           class="flex-auto"
           autocomplete="off"
@@ -104,13 +125,13 @@ async function handleSave() {
         />
       </div>
       <div class="flex items-center gap-4 mb-4">
-        <label for="fechaestreno" class="font-semibold w-24">Fecha de Estreno:</label>
-        <Calendar
-          id="sinopsis"
+        <label for="fechaestreno" class="font-semibold w-6">Fecha de Estreno:</label>
+        <DatePicker
+          id="fechaEstreno"
           v-model="serie.fechaEstreno"
-          class="flex-auto"
-          autocomplete="off"
-          autofocus
+          showIcon
+          fluid
+          iconDisplay="input"
         />
       </div>
       <div class="flex justify-end gap-2">

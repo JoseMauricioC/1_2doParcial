@@ -15,6 +15,9 @@ export class Series {
   @Column({ type: 'varchar', length: 250 })
   titulo: string;
 
+  @Column({ type: 'varchar', length: 50, default: '' })
+  genero: string;
+
   @Column({ type: 'varchar', length: 5000 })
   sinopsis: string;
 

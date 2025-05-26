@@ -23,6 +23,7 @@ export class SeriesService {
 
     const serie = new Series();
     serie.titulo = createSeriesDto.titulo.trim();
+    serie.genero = createSeriesDto.genero.trim();
     serie.sinopsis = createSeriesDto.sinopsis.trim();
     serie.director = createSeriesDto.director.trim();
     serie.temporadas = createSeriesDto.temporadas;

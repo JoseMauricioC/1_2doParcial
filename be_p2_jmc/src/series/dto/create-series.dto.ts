@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
   IsDateString,
+  IsDefined,
   IsInt,
   IsNotEmpty,
   IsString,
@@ -16,6 +17,10 @@ export class CreateSeriesDto {
     message: 'El campo titulo no debe ser mayor a 250 caracteres',
   })
   readonly titulo: string;
+
+  @ApiProperty()
+  @IsNotEmpty({ message: 'El campo genero es obligatorio' })
+  readonly genero: string;
 
   @ApiProperty()
   @IsNotEmpty({ message: 'El campo sinopsis es obligatorio' })
